@@ -1,0 +1,6 @@
+---
+name: sslxip
+templates:
+   ctl.erb: bin/ctl
+
+packages:
