@@ -1,0 +1,20 @@
+# abort script on any command that exits with a non zero value
+set -e
+
+apt-get update
+apt-get install -y autoconf automake bison flex g++ git libboost-all-dev libtool make pkg-config ragel libmysqlclient-dev
+
+tar xvjf powerdns/pdns-3.4.5.tar.bz2
+cd pdns-3.4.5
+
+./configure \
+  --with-modules="bind pipe" \
+  --without-lua \
+  --prefix=${BOSH_INSTALL_TARGET}
+
+#./configure \
+#  --prefix=${BOSH_INSTALL_TARGET} \
+#  --sysconfdir=/var/vcap/jobs/named/etc \
+#  --localstatedir=/var/vcap/sys
+make
+make install

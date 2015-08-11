@@ -1,0 +1,7 @@
+---
+name: powerdns
+
+dependencies:
+
+files:
+- powerdns/pdns-3.4.5.tar.bz2

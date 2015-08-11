@@ -1,6 +1,10 @@
 ---
 name: sslxip
 templates:
-   ctl.erb: bin/ctl
+  ctl.erb: bin/ctl
+  xip-pdns.erb: bin/xip-pdns
+  xip-pdns.conf.erb: etc/xip-pdns.conf
+  pdns.conf.erb: etc/pdns.conf
 
 packages:
+- powerdns

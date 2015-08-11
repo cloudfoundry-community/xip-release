@@ -1,0 +1,6 @@
+---
+blobstore:
+  provider: local
+  options:
+    blobstore_path: /tmp/sslxip-blobs
+final_name: sslxip
