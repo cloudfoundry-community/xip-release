@@ -1,5 +1,5 @@
 ---
-name: sslxip
+name: sslip
 templates:
   ctl.erb: bin/ctl
   xip-pdns.erb: bin/xip-pdns

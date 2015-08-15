@@ -2,5 +2,5 @@
 blobstore:
   provider: local
   options:
-    blobstore_path: /tmp/sslxip-blobs
-final_name: sslxip
+    blobstore_path: /tmp/sslip-blobs
+final_name: sslip

@@ -1,0 +1,5 @@
+check process sslip
+  with pidfile /var/vcap/sys/run/sslip/pid
+  start program "/var/vcap/jobs/sslip/bin/ctl start"
+  stop program "/var/vcap/jobs/sslip/bin/ctl stop"
+  group vcap

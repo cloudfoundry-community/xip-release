@@ -1,5 +1,0 @@
-check process sslxip
-  with pidfile /var/vcap/sys/run/sslxip/pid
-  start program "/var/vcap/jobs/sslxip/bin/ctl start"
-  stop program "/var/vcap/jobs/sslxip/bin/ctl stop"
-  group vcap

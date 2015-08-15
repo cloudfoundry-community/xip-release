@@ -17,7 +17,7 @@
 set -e
 
 #prefix=/usr/local
-prefix=/var/vcap/jobs/sslxip/packages/powerdns
+prefix=/var/vcap/jobs/sslip/packages/powerdns
 exec_prefix=${prefix}
 BINARYPATH=${exec_prefix}/bin
 SBINARYPATH=${exec_prefix}/sbin
@@ -88,7 +88,7 @@ case "$1" in
 		then
 			echo "already running"
 		else
-			if $pdns_server --daemon --guardian=yes --config-dir=/var/vcap/jobs/sslxip/etc
+			if $pdns_server --daemon --guardian=yes --config-dir=/var/vcap/jobs/sslip/etc
 			then
 				echo "started"
 	            	else
