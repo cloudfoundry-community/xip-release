@@ -23,6 +23,7 @@ BINARYPATH=${exec_prefix}/bin
 SBINARYPATH=${exec_prefix}/sbin
 SOCKETPATH=/var/run
 DAEMON_ARGS=""
+PIDFILE="/var/vcap/sys/run/sslip/pid"
 
 [ -f "$SBINARYPATH/pdns_server" ] || exit 0
 
@@ -66,13 +67,8 @@ case "$1" in
 
 	stop)
 		echo -n "Stopping PowerDNS authoritative nameserver: "
-		if test "$NOTRUNNING" = "0"
-		then
-			doPC quit
-			echo $ret
-		else
-			echo "not running"
-		fi
+		# The monit way of stopping
+		kill $(cat $PIDFILE)
 	;;
 
 
@@ -84,18 +80,9 @@ case "$1" in
 
 	start)
 		echo -n "Starting PowerDNS authoritative nameserver: "
-		if test "$NOTRUNNING" = "0"
-		then
-			echo "already running"
-		else
-			if $pdns_server --daemon --guardian=yes --config-dir=/var/vcap/jobs/sslip/etc
-			then
-				echo "started"
-			else
-				echo "starting failed"
-		                exit 1
-			fi
-		fi
+		# The monit way of starting up
+		echo $$ > $PIDFILE
+		exec 2>&1 $pdns_server --daemon=no --guardian=yes --config-dir=/var/vcap/jobs/sslip/etc
 	;;
 
 	force-reload | restart)
