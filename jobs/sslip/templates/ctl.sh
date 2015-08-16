@@ -91,7 +91,7 @@ case "$1" in
 			if $pdns_server --daemon --guardian=yes --config-dir=/var/vcap/jobs/sslip/etc
 			then
 				echo "started"
-	            	else
+			else
 				echo "starting failed"
 		                exit 1
 			fi

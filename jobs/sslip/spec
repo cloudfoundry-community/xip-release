@@ -1,10 +1,16 @@
 ---
 name: sslip
 templates:
-  ctl.erb: bin/ctl
-  xip-pdns.erb: bin/xip-pdns
+  ctl.sh: bin/ctl
+  xip-pdns.sh: bin/xip-pdns
   xip-pdns.conf.erb: etc/xip-pdns.conf
   pdns.conf.erb: etc/pdns.conf
 
 packages:
 - powerdns
+
+properties:
+  pdns_conf:
+    description: "The contents of pdns.conf (PowerDNS's configuration file)"
+  xip_pdns_conf:
+    description: "The contents of xip-pdns.conf (xip's configuration file)"
