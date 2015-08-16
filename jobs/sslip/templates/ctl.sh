@@ -23,7 +23,7 @@ BINARYPATH=${exec_prefix}/bin
 SBINARYPATH=${exec_prefix}/sbin
 SOCKETPATH=/var/run
 DAEMON_ARGS=""
-PIDFILE="/var/vcap/sys/run/sslip/pid"
+PIDFILE="/var/vcap/sys/run/sslip.pid"
 
 [ -f "$SBINARYPATH/pdns_server" ] || exit 0
 
