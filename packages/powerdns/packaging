@@ -1,10 +1,17 @@
 # abort script on any command that exits with a non zero value
 set -e
 
-apt-get update
-apt-get install -y autoconf automake bison flex g++ git libboost-all-dev libtool make pkg-config ragel libmysqlclient-dev
+# FIXME: we should rebuild dependencies from source; we should NOT use
+# this ugly hack to install via yum/apt-get.
+if [ -f /etc/redhat-release ]; then
+  yum install -y boost-devel
+  export LDFLAGS="-L/usr/lib64"
+elif [ -f /etc/lsb-release ]; then
+  apt-get update
+  apt-get install -y autoconf automake bison flex g++ git libboost-all-dev libtool make pkg-config ragel libmysqlclient-dev
+fi
 
-tar xvjf powerdns/pdns-3.4.5.tar.bz2
+tar xvf powerdns/pdns-3.4.5.tar.bz2
 cd pdns-3.4.5
 
 ./configure \
