@@ -58,7 +58,7 @@ send_answer() {
 }
 
 log() {
-  printf "[xip-pdns:$$] %s\n" "$@" >> /tmp/al.txt 2>&1
+  printf "[xip-pdns:$$] %s\n" "$@" >&2
 }
 
 
@@ -68,7 +68,7 @@ log() {
 XIP_DOMAIN_PATTERN="(^|\.)${XIP_DOMAIN//./\.}\$"
 NS_SUBDOMAIN_PATTERN="^ns-([0-9]+)\$"
 IP_SUBDOMAIN_PATTERN="(^|\.)(((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\$"
-DASHED_IP_SUBDOMAIN_PATTERN="(^|-)(((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)-){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\$"
+DASHED_IP_SUBDOMAIN_PATTERN="(^|-|\.)(((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)-){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\$"
 BASE36_SUBDOMAIN_PATTERN="(^|\.)([a-z0-9]{1,7})\$"
 
 qtype_is() {
