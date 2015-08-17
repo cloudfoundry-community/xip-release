@@ -1,0 +1,109 @@
+---
+name: sslip
+
+resource_pools:
+- name: sslip_pool
+  network: default
+  cloud_properties:
+    instance_type: t2.micro
+    ephemeral_disk:
+      size: 4000
+      type: gp2
+    availability_zone: us-east-1a
+  stemcell:
+    url: https://bosh.io/d/stemcells/bosh-aws-xen-hvm-centos-7-go_agent?v=3042
+    sha1: 082b4eee247bb199138ec6163fb4ea92f6b7fcc4
+
+jobs:
+- name: sslip
+  instances: 1
+  templates:
+  - { release: sslip, name: sslip }
+  resource_pool: sslip_pool
+  networks:
+  - name: vip
+    # CHANGEME: replace the IP address with your Elastic IP
+    # the Elastic IP must have scope 'vpc' not 'standard'
+    static_ips: [52.0.76.229]
+  - name: default
+  properties:
+    pdns_conf: |
+      launch=pipe
+      pipe-command=/var/vcap/jobs/sslip/bin/xip-pdns /var/vcap/jobs/sslip/etc/xip-pdns.conf
+    xip_pdns_conf: |
+      # Increment this timestamp when the contents of the file change.
+      XIP_TIMESTAMP="2015081600"
+
+      # The top-level domain for which the name server is authoritative.
+      # CHANGEME: change "sslip.io" to your domain
+      XIP_DOMAIN="sslip.io"
+
+      # The public IP addresses (e.g. for the web site) of the top-level domain.
+      # `A` queries for the top-level domain will return this list of addresses.
+      # CHANGEME: change this to your domain's webserver's address
+      XIP_ROOT_ADDRESSES=( "52.0.56.137" )
+
+      # The public IP addresses on which this xip-pdns server will run.
+      # `NS` queries for the top-level domain will return this list of addresses.
+      # Each entry maps to a 1-based subdomain of the format `ns-1`, `ns-2`, etc.
+      # `A` queries for these subdomains map to the corresponding addresses here.
+      # CHANGEME: change this to match your NS records; one of these IP addresses
+      # should match the jobs(sslip).networks.static_ips listed above
+      XIP_NS_ADDRESSES=( "52.0.56.137" "78.47.249.19" )
+
+      # How long responses should be cached, in seconds.
+      XIP_TTL=300
+
+networks:
+- name: default
+  type: dynamic
+  cloud_properties:
+    # CHANGEME: replace the subnet with your subnet-id
+    subnet: subnet-1c90ef6b
+- name: vip
+  type: vip
+
+cloud_provider:
+  template: {name: cpi, release: bosh-aws-cpi}
+
+  ssh_tunnel:
+    # CHANGEME: replace the IP address with your Elastic IP
+    host: 52.0.76.229
+    port: 22
+    user: vcap
+    # CHANGEME: replace with the pathname of your downloaded AWS Key Pair
+    # (Power users: no passphrase-protection otherwise you'll see a
+    # `asn1: structure error: tags don't match` message when deploying
+    private_key: /Users/cunnie/.ssh/aws_nono.pem
+
+  # CHANGEME: replace 'dmitriy' with a secure password
+  mbus: https://nats:dmitriy@52.0.76.229:6868
+
+  properties:
+    aws:
+      # CHANGEME: replace with your AWS Access Key
+      access_key_id: AKIAIZxxxxxxxxxxxxxx
+      # CHANGEME: replace with your AWS Secret
+      secret_access_key: 0+B1XW6VVEYxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      # CHANGEME: replace with your AWS Key Pair name
+      default_key_name: aws_nono
+      # CHANGEME: replace with your security group
+      # the Security Group MUST have the VPC ID of your VPC (e.g. 'vpc-e4250881')
+      default_security_groups: [no-filter-vpc]
+      region: us-east-1
+
+    # CHANGEME: replace 'dmitriy' with a secure password
+    agent: {mbus: "https://nats:dmitriy@0.0.0.0:6868"}
+
+    blobstore:
+      provider: local
+      path: /var/vcap/micro_bosh/data/cache
+
+    ntp: [0.north-america.pool.ntp.org]
+
+releases:
+  - name: sslip
+    url: file://dev_releases/sslip/sslip-0+dev.1.tgz
+  - name: bosh-aws-cpi
+    url: https://bosh.io/d/github.com/cloudfoundry-incubator/bosh-aws-cpi-release?v=28
+    sha1: c7ce03393ebedd87a860dc609758ddb9654360fa
