@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # chkconfig: - 80 75
 # description: PDNS is a versatile high performance authoritative nameserver
 
@@ -24,6 +24,7 @@ SBINARYPATH=${exec_prefix}/sbin
 SOCKETPATH=/var/run
 DAEMON_ARGS=""
 PIDFILE="/var/vcap/sys/run/sslip.pid"
+LOGDIR="/var/vcap/sys/log/sslip"
 
 [ -f "$SBINARYPATH/pdns_server" ] || exit 0
 
@@ -42,6 +43,9 @@ then
 else
 	PROGNAME=pdns
 fi
+
+# make sure LOG dir exists
+mkdir -p $LOGDIR
 
 pdns_server="$SBINARYPATH/pdns_server $DAEMON_ARGS $EXTRAOPTS"
 
@@ -81,8 +85,10 @@ case "$1" in
 	start)
 		echo -n "Starting PowerDNS authoritative nameserver: "
 		# The monit way of starting up
-		echo $$ > $PIDFILE
-		exec 2>&1 $pdns_server --daemon=no --guardian=yes --config-dir=/var/vcap/jobs/sslip/etc
+		( echo $BASHPID > $PIDFILE; exec \
+                        > $LOGDIR/pdns_server.stdout.log \
+                        2> $LOGDIR/pdns_server.stderr.log \
+                        $pdns_server --daemon=no --guardian=yes --config-dir=/var/vcap/jobs/sslip/etc ) &
 	;;
 
 	force-reload | restart)
