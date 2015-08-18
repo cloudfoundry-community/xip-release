@@ -29,3 +29,7 @@ Deploy the release to AWS.
 ```
 bosh-init deploy /tmp/sslip-aws.yml
 ```
+
+## BUGS
+
+PowerDNS is not built with database backends, only the *pipe* and *bind* backends.

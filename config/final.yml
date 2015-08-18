@@ -1,6 +1,6 @@
 ---
 blobstore:
-  provider: local
+  provider: s3
   options:
-    blobstore_path: /tmp/sslip-blobs
+    bucket_name: powerdns-sslip-release
 final_name: sslip
