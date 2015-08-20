@@ -1,0 +1,20 @@
+---
+packages:
+- name: powerdns
+  version: 6290c918cdb5fc076d21d10416071bcfab751468
+  fingerprint: 6290c918cdb5fc076d21d10416071bcfab751468
+  sha1: 43c311d5d23c2b059010f822a8af69a1422a54b9
+  dependencies: []
+jobs:
+- name: sslip
+  version: 033a2914d397c818aaed33536b9698ee008b1843
+  fingerprint: 033a2914d397c818aaed33536b9698ee008b1843
+  sha1: 944f0a1db51e37239da9ff809c3cfb141fa5a50a
+license:
+  version: 9841d3f4cf3430748ecd6b1c6308345f8bf9404a
+  fingerprint: 9841d3f4cf3430748ecd6b1c6308345f8bf9404a
+  sha1: 0acc83c05ba2f025032d723030321bb54c5ce6a7
+commit_hash: 8bab1051
+uncommitted_changes: true
+name: sslip
+version: '1'
