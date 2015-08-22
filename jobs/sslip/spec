@@ -3,6 +3,7 @@ name: sslip
 templates:
   ctl.sh: bin/ctl
   xip-pdns.sh: bin/xip-pdns
+  named.conf.erb: etc/named.conf
   xip-pdns.conf.erb: etc/xip-pdns.conf
   pdns.conf.erb: etc/pdns.conf
 
@@ -10,6 +11,8 @@ packages:
 - powerdns
 
 properties:
+  named_conf:
+    description: "The contents of named.conf (PowerDNS's BIND backend's configuration file)"
   pdns_conf:
     description: "The contents of pdns.conf (PowerDNS's configuration file)"
   xip_pdns_conf:
