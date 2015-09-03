@@ -2,5 +2,5 @@
 blobstore:
   provider: s3
   options:
-    bucket_name: powerdns-sslip-release
-final_name: sslip
+    bucket_name: xip-release
+final_name: xip

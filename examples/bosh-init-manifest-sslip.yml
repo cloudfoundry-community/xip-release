@@ -1,8 +1,8 @@
 ---
-name: sslip
+name: xip
 
 resource_pools:
-- name: sslip_pool
+- name: xip_pool
   network: default
   cloud_properties:
     instance_type: t2.micro
@@ -15,11 +15,11 @@ resource_pools:
     sha1: 082b4eee247bb199138ec6163fb4ea92f6b7fcc4
 
 jobs:
-- name: sslip
+- name: xip
   instances: 1
   templates:
-  - { release: sslip, name: sslip }
-  resource_pool: sslip_pool
+  - { release: xip, name: xip }
+  resource_pool: xip_pool
   networks:
   - name: vip
     # CHANGEME: replace the IP address with your Elastic IP
@@ -29,7 +29,7 @@ jobs:
   properties:
     pdns_conf: |
       launch=pipe
-      pipe-command=/var/vcap/jobs/sslip/bin/xip-pdns /var/vcap/jobs/sslip/etc/xip-pdns.conf
+      pipe-command=/var/vcap/jobs/xip/bin/xip-pdns /var/vcap/jobs/xip/etc/xip-pdns.conf
     xip_pdns_conf: |
       # Increment this timestamp when the contents of the file change.
       XIP_TIMESTAMP="2015081600"
@@ -48,7 +48,7 @@ jobs:
       # Each entry maps to a 1-based subdomain of the format `ns-1`, `ns-2`, etc.
       # `A` queries for these subdomains map to the corresponding addresses here.
       # CHANGEME: change this to match your NS records; one of these IP addresses
-      # should match the jobs(sslip).networks.static_ips listed above
+      # should match the jobs(xip).networks.static_ips listed above
       XIP_NS_ADDRESSES=( "52.0.56.137" "78.47.249.19" )
 
       # How long responses should be cached, in seconds.
@@ -102,8 +102,8 @@ cloud_provider:
     ntp: [0.north-america.pool.ntp.org]
 
 releases:
-  - name: sslip
-    url: file://dev_releases/sslip/sslip-0+dev.1.tgz
+  - name: xip
+    url: file://dev_releases/xip/xip-0+dev.1.tgz
   - name: bosh-aws-cpi
     url: https://bosh.io/d/github.com/cloudfoundry-incubator/bosh-aws-cpi-release?v=28
     sha1: c7ce03393ebedd87a860dc609758ddb9654360fa

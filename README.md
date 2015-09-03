@@ -1,6 +1,6 @@
-# SSLIP Release
+# XIP Release
 
-SSLIP is a [BOSH release](https://bosh.io/docs/create-release.html)
+XIP is a [BOSH release](https://bosh.io/docs/create-release.html)
 of a [PowerDNS](https://www.powerdns.com/) nameserver combined with
 a modified [xip.io](http://xip.io/) pipe backend.
 
@@ -16,18 +16,18 @@ curl -L https://downloads.powerdns.com/releases/pdns-3.4.5.tar.bz2 -o src/powerd
 bosh create release --force --with-tarball
 ```
 
-Copy the sample configuration in examples/sslip-aws.yml and customize
+Copy the sample configuration in examples/xip-aws.yml and customize
 entries flagged with **CHANGEME**. You will need an Amazon AWS account with a configured VPC.
 
 ```
-cp examples/sslip-aws.yml /tmp/
-vim /tmp/sslip-aws.yml
+cp examples/xip-aws.yml /tmp/
+vim /tmp/xip-aws.yml
 ```
 
 Deploy the release to AWS.
 
 ```
-bosh-init deploy /tmp/sslip-aws.yml
+bosh-init deploy /tmp/xip-aws.yml
 ```
 
 ## BUGS
