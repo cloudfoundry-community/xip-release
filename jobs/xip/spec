@@ -11,9 +11,10 @@ packages:
 - powerdns
 
 properties:
-  named_conf:
-    description: "The contents of named.conf (PowerDNS's BIND backend's configuration file)"
-  pdns_conf:
-    description: "The contents of pdns.conf (PowerDNS's configuration file)"
-  xip_pdns_conf:
-    description: "The contents of xip-pdns.conf (xip's configuration file)"
+  xip:
+    named_conf:
+      description: "The contents of named.conf (PowerDNS's BIND backend's configuration file)"
+    pdns_conf:
+      description: "The contents of pdns.conf (PowerDNS's configuration file)"
+    xip_pdns_conf:
+      description: "The contents of xip-pdns.conf (xip's configuration file)"
