@@ -17,14 +17,14 @@
 set -e
 
 #prefix=/usr/local
-prefix=/var/vcap/jobs/sslip/packages/powerdns
+prefix=/var/vcap/jobs/xip/packages/powerdns
 exec_prefix=${prefix}
 BINARYPATH=${exec_prefix}/bin
 SBINARYPATH=${exec_prefix}/sbin
 SOCKETPATH=/var/run
 DAEMON_ARGS=""
-PIDFILE="/var/vcap/sys/run/sslip.pid"
-LOGDIR="/var/vcap/sys/log/sslip"
+PIDFILE="/var/vcap/sys/run/xip.pid"
+LOGDIR="/var/vcap/sys/log/xip"
 
 [ -f "$SBINARYPATH/pdns_server" ] || exit 0
 
@@ -88,7 +88,7 @@ case "$1" in
 		( echo $BASHPID > $PIDFILE; exec \
                         > $LOGDIR/pdns_server.stdout.log \
                         2> $LOGDIR/pdns_server.stderr.log \
-                        $pdns_server --daemon=no --guardian=yes --config-dir=/var/vcap/jobs/sslip/etc ) &
+                        $pdns_server --daemon=no --guardian=yes --config-dir=/var/vcap/jobs/xip/etc ) &
 	;;
 
 	force-reload | restart)

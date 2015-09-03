@@ -1,5 +1,5 @@
 ---
-name: sslip
+name: xip
 templates:
   ctl.sh: bin/ctl
   xip-pdns.sh: bin/xip-pdns
