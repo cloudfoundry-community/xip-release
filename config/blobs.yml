@@ -1,5 +1,5 @@
 ---
-pdns-3.4.6.tar.bz2:
-  object_id: 54386e39-57b8-4e74-9dc3-adaa94ea2664
+pdns-3.4.6/pdns-3.4.6.tar.bz2:
+  object_id: d424a934-a8c8-4655-bd75-650fddf3831e
   sha: 5b01b21e7a2807d9770fea5ed1acc4dc3ed609bd
   size: 1336760
