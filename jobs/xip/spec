@@ -11,10 +11,13 @@ packages:
 - pdns-3.4.6
 
 properties:
-  xip:
-    named_conf:
-      description: "The contents of named.conf (PowerDNS's BIND backend's configuration file)"
-    pdns_conf:
-      description: "The contents of pdns.conf (PowerDNS's configuration file)"
-    xip_pdns_conf:
-      description: "The contents of xip-pdns.conf (xip's configuration file)"
+  xip.named_conf:
+    default: ''
+    description: "The contents of named.conf (PowerDNS's BIND backend's configuration file)"
+  xip.pdns_conf:
+    default: |
+      launch=pipe
+      pipe-command=/var/vcap/jobs/xip/bin/xip-pdns /var/vcap/jobs/xip/etc/xip-pdns.conf
+    description: "The contents of pdns.conf (PowerDNS's configuration file)"
+  xip.xip_pdns_conf:
+    description: "The contents of xip-pdns.conf (xip's configuration file)"
