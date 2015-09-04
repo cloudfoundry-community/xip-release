@@ -11,7 +11,7 @@ elif [ -f /etc/lsb-release ]; then
   apt-get install -y autoconf automake bison flex g++ git libboost-all-dev libtool make pkg-config ragel libmysqlclient-dev
 fi
 
-tar xvf powerdns/pdns-3.4.5.tar.bz2
+tar xvf pdns-3.4.5/pdns-3.4.5.tar.bz2
 cd pdns-3.4.5
 
 ./configure \

@@ -8,7 +8,7 @@ templates:
   pdns.conf.erb: etc/pdns.conf
 
 packages:
-- powerdns
+- pdns-3.4.5
 
 properties:
   xip:
