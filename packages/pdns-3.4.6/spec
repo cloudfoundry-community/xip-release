@@ -1,7 +1,7 @@
 ---
-name: pdns-3.4.5
+name: pdns-3.4.6
 
 dependencies:
 
 files:
-- pdns-3.4.5/pdns-3.4.5.tar.bz2
+- pdns-3.4.6/pdns-3.4.6.tar.bz2 # from https://downloads.powerdns.com/releases/pdns-3.4.6.tar.bz2
