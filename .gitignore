@@ -9,7 +9,7 @@
 .idea
 .ruby-version
 .vagrant
-blobs
+.blobs
 blobs
 config/dev.yml
 config/private.yml
