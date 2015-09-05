@@ -75,7 +75,7 @@ cloud_provider:
     private_key: /Users/cunnie/.ssh/aws_nono.pem
 
   # CHANGEME: replace 'dmitriy' with a secure password
-  mbus: https://nats:hooray4cppforlife@52.0.76.229:6868
+  mbus: https://nats:dmitriy@52.0.76.229:6868
 
   properties:
     aws:
@@ -91,7 +91,7 @@ cloud_provider:
       region: us-east-1
 
     # CHANGEME: replace 'dmitriy' with a secure password
-    agent: {mbus: "https://nats:hooray4cppforlife@0.0.0.0:6868"}
+    agent: {mbus: "https://nats:dmitriy@0.0.0.0:6868"}
 
     blobstore:
       provider: local
