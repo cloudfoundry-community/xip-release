@@ -11,7 +11,7 @@ resource_pools:
       type: gp2
     availability_zone: us-east-1a
   stemcell:
-    url: https://bosh.io/d/stemcells/bosh-aws-xen-hvm-centos-7-go_agent?v=3042
+    url: https://bosh.io/d/stemcells/bosh-aws-xen-hvm-centos-7-go_agent?v=3063
     sha1: 082b4eee247bb199138ec6163fb4ea92f6b7fcc4
 
 jobs:
@@ -28,12 +28,9 @@ jobs:
   - name: default
   properties:
     xip:
-    - pdns_conf: |
-        launch=pipe
-        pipe-command=/var/vcap/jobs/xip/bin/xip-pdns /var/vcap/jobs/xip/etc/xip-pdns.conf
       xip_pdns_conf: |
         # Increment this timestamp when the contents of the file change.
-        XIP_TIMESTAMP="2015081600"
+        XIP_TIMESTAMP="2015090512"
 
         # The top-level domain for which the name server is authoritative.
         # CHANGEME: change "sslip.io" to your domain
@@ -78,14 +75,14 @@ cloud_provider:
     private_key: /Users/cunnie/.ssh/aws_nono.pem
 
   # CHANGEME: replace 'dmitriy' with a secure password
-  mbus: https://nats:dmitriy@52.0.76.229:6868
+  mbus: https://nats:hooray4cppforlife@52.0.76.229:6868
 
   properties:
     aws:
       # CHANGEME: replace with your AWS Access Key
-      access_key_id: AKIAIZxxxxxxxxxxxxxx
+      access_key_id: AKIAxxxxxxxxxxxxxxxx
       # CHANGEME: replace with your AWS Secret
-      secret_access_key: 0+B1XW6VVEYxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      secret_access_key: 0+B1Xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
       # CHANGEME: replace with your AWS Key Pair name
       default_key_name: aws_nono
       # CHANGEME: replace with your security group
@@ -94,7 +91,7 @@ cloud_provider:
       region: us-east-1
 
     # CHANGEME: replace 'dmitriy' with a secure password
-    agent: {mbus: "https://nats:dmitriy@0.0.0.0:6868"}
+    agent: {mbus: "https://nats:hooray4cppforlife@0.0.0.0:6868"}
 
     blobstore:
       provider: local
@@ -103,8 +100,9 @@ cloud_provider:
     ntp: [0.north-america.pool.ntp.org]
 
 releases:
-  - name: xip
-    url: file://dev_releases/xip/xip-0+dev.1.tgz
-  - name: bosh-aws-cpi
-    url: https://bosh.io/d/github.com/cloudfoundry-incubator/bosh-aws-cpi-release?v=28
-    sha1: c7ce03393ebedd87a860dc609758ddb9654360fa
+- name: xip
+  url:  https://s3.amazonaws.com/xip-release/xip-1.tgz
+  sha1: b544389803a6ef21b6dd05a5c13526dab0df7ac3
+- name: bosh-aws-cpi
+  url: https://bosh.io/d/github.com/cloudfoundry-incubator/bosh-aws-cpi-release?v=28
+  sha1: c7ce03393ebedd87a860dc609758ddb9654360fa
