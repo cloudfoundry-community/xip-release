@@ -1,11 +1,11 @@
 # XIP Release
 
 XIP is a [BOSH release](https://bosh.io/docs/create-release.html)
-of the [PowerDNS](https://www.powerdns.com/) nameserver combined with a modified [xip.io](http://xip.io/) [*Pipe*](https://doc.powerdns.com/md/authoritative/backend-pipe/) backend.
+of the [PowerDNS](https://www.powerdns.com/) nameserver combined with an enhanced [xip.io](http://xip.io/) [*Pipe*](https://doc.powerdns.com/md/authoritative/backend-pipe/) backend.
 
 Deploying this release will create a DNS nameserver that will reply to xip.io-style queries, e.g. a query for the [A record](https://support.dnsimple.com/articles/a-record/) of the hostname "192.168.0.1.xip.io" will return the IP address "192.168.0.1". The domain can be customized (it does not need to be *xip.io*)
 
-The modified xip.io *Pipe* backend allows the lookup of hostnames with dashes as separators (not solely dots), for example, "172-16-100-1.xip.io" resolves to 172.16.100.1.
+The enhanced xip.io *Pipe* backend allows the lookup of hostnames with dashes as separators (not solely dots), for example, "172-16-100-1.xip.io" resolves to 172.16.100.1.
 
 ## XIP BOSH Manifest
 
