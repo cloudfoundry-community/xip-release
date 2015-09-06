@@ -1,17 +1,17 @@
-# XIP Release
+# xip Release
 
-XIP is a [BOSH release](https://bosh.io/docs/create-release.html)
+xip is a [BOSH release](https://bosh.io/docs/create-release.html)
 of the [PowerDNS](https://www.powerdns.com/) nameserver combined with an enhanced [xip.io](http://xip.io/) [*Pipe*](https://doc.powerdns.com/md/authoritative/backend-pipe/) backend.
 
 Deploying this release will create a DNS nameserver that will reply to xip.io-style queries, e.g. a query for the [A record](https://support.dnsimple.com/articles/a-record/) of the hostname "192.168.0.1.xip.io" will return the IP address "192.168.0.1". The domain can be customized (it does not need to be *xip.io*)
 
 The enhanced xip.io *Pipe* backend allows the lookup of hostnames with dashes as separators (not solely dots), for example, "172-16-100-1.xip.io" resolves to 172.16.100.1.
 
-## XIP BOSH Manifest
+## xip BOSH Manifest
 
 ### 1. Job Properties
 
-XIP's BOSH Properties are
+xip's BOSH Properties are
 scoped under the `xip` element. A typical BOSH manifest has the following
 layout:
 
@@ -28,7 +28,7 @@ jobs:
         ...
 ```
 
-XIP has the following job properties:
+xip has the following job properties:
 
 * `xip_pdns_conf`: *Required*.  This is the configuration for the xip.io backend. It is a bash script that sets the environment variables that configure the behavior (e.g. the domain name). In the following example, we configure the domain name to be "sslip.io":
 
@@ -83,7 +83,7 @@ releases:
   sha1: b544389803a6ef21b6dd05a5c13526dab0df7ac3
 ```
 
-## <a name="deploy"></a>Deploying a Custom Version of XIP to Amazon AWS
+## <a name="deploy"></a>Deploying a Custom Version of xip to Amazon AWS
 
 In this example, we deploy custom version of xip.io to a t2.micro instance on Amazon AWS:
 
@@ -99,9 +99,9 @@ The BOSH documentation has an excellent [walk-through](http://bosh.io/docs/init-
 * AWS Key Pair name: **aws_nono**
 * Security Group: **no-filter-vpc**
 
-### 2. Customize XIP's Configuration
+### 2. Customize xip's Configuration
 
-In addition to the infrastructure items above, we also need to customize our XIP-specific information, which we will use in the `jobs.properties.xip.xip_pdns_conf` section of our BOSH manifest:
+In addition to the infrastructure items above, we also need to customize our xip-specific information, which we will use in the `jobs.properties.xip.xip_pdns_conf` section of our BOSH manifest:
 
 * a current timestamp: **2015090512**
 * our domain name: **sslip.io**
