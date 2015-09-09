@@ -8,6 +8,7 @@ shopt -s nocasematch
 XIP_DOMAIN="xip.test"
 XIP_ROOT_ADDRESSES=( "127.0.0.1" )
 XIP_NS_ADDRESSES=( "127.0.0.1" )
+XIP_MX_RECORDS=( )
 XIP_TIMESTAMP="0"
 XIP_TTL=300
 
@@ -145,6 +146,14 @@ answer_root_a_query() {
   done
 }
 
+answer_mx_query() {
+  set -- "${XIP_MX_RECORDS[@]}"
+  while [ $# -gt 1 ]; do
+    send_answer "MX" "$1  $2"
+  shift 2
+  done
+}
+
 answer_subdomain_a_query_for() {
   local type="$1"
   local address="$(resolve_${type}_subdomain)"
@@ -176,6 +185,10 @@ while read_query; do
 
       if qtype_is "A"; then
         answer_root_a_query
+      fi
+
+      if qtype_is "MX"; then
+        answer_mx_query
       fi
 
     elif qtype_is "A"; then
