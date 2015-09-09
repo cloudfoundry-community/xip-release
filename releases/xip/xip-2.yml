@@ -1,0 +1,20 @@
+---
+packages:
+- name: pdns-3.4.6
+  version: daa1d3f85eca4b9333885512e68339c32e61232e
+  fingerprint: daa1d3f85eca4b9333885512e68339c32e61232e
+  sha1: aec29ab107ee2904a83c2f31a23c32828c7b366b
+  dependencies: []
+jobs:
+- name: xip
+  version: 31db613cda1e9f90d671c974042e43ca6bc11764
+  fingerprint: 31db613cda1e9f90d671c974042e43ca6bc11764
+  sha1: 5784218516101e224f7125a88b5c81e34ce0b97c
+license:
+  version: 9841d3f4cf3430748ecd6b1c6308345f8bf9404a
+  fingerprint: 9841d3f4cf3430748ecd6b1c6308345f8bf9404a
+  sha1: 391dc7051100b5045088103d52ad76ce37745ef5
+commit_hash: 13d4f613
+uncommitted_changes: true
+name: xip
+version: '2'
