@@ -149,7 +149,7 @@ answer_root_a_query() {
 answer_mx_query() {
   set -- "${XIP_MX_RECORDS[@]}"
   while [ $# -gt 1 ]; do
-    send_answer "MX" "$1  $2"
+    send_answer "MX" "$1	$2"
   shift 2
   done
 }
