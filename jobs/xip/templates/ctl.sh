@@ -17,7 +17,7 @@
 set -e
 
 #prefix=/usr/local
-prefix=/var/vcap/jobs/xip/packages/pdns-3.4.6
+prefix=/var/vcap/jobs/xip/packages/powerdns
 exec_prefix=${prefix}
 BINARYPATH=${exec_prefix}/bin
 SBINARYPATH=${exec_prefix}/sbin
