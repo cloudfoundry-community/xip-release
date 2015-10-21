@@ -20,7 +20,7 @@ set -e
 prefix=/var/vcap/jobs/xip/packages/powerdns
 exec_prefix=${prefix}
 BINARYPATH=${exec_prefix}/bin
-SBINARYPATH=${exec_prefix}/sbin
+SBINARYPATH=${exec_prefix}
 SOCKETPATH=/var/run
 DAEMON_ARGS=""
 PIDFILE="/var/vcap/sys/run/xip.pid"
