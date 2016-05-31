@@ -66,7 +66,7 @@ xip has the following job properties:
   };
   ```
 
-### 2. Upload Release to BOSH
+### 2. Upload Release to BOSH Director
 
 If using BOSH (not *bosh-init*), upload the release to the BOSH director:
 
@@ -81,6 +81,14 @@ releases:
 - name: xip
   url:  https://s3.amazonaws.com/xip-release/xip-1.tgz
   sha1: b544389803a6ef21b6dd05a5c13526dab0df7ac3
+```
+
+### 3. Install Required boost library
+
+*Note: this step should be fixed in the release. Pull requests are welcome.*
+
+```
+yum install -y boost-serialization
 ```
 
 ## <a name="deploy"></a>Deploying a Custom Version of xip to Amazon AWS
